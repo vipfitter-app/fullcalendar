@@ -34,9 +34,20 @@ export class ToolbarSection extends BaseComponent<ToolbarSectionProps> {
 
       if (buttonName === 'title') {
         isOnlyButtons = false
-        children.push(
-          <h2 className="fc-toolbar-title" id={props.titleId}>{props.title}</h2>,
-        )
+
+        if (typeof props.title === 'object') {
+          children.push(
+            <h2 className="fc-toolbar-title" id={props.titleId}>{props.title.title}</h2>,
+          )
+          children.push(
+            <div className="fc-toolbar-subtitle">{props.title.subTitle}</div>,
+          )
+        } else {
+          children.push(
+            <h2 className="fc-toolbar-title" id={props.titleId}>{props.title}</h2>,
+          )
+        }
+
       } else {
         let isPressed = buttonName === props.activeButton
         let isDisabled =
